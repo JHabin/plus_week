@@ -36,8 +36,8 @@ public class ReservationController {
     }
 
     @GetMapping
-    public void findAll() {
-        reservationService.getReservations();
+    public List<ReservationResponseDto> findAll() {
+        return reservationService.getReservations();
     }
 
 

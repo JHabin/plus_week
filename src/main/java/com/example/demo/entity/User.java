@@ -27,7 +27,7 @@ public class User {
 
     public User() {}
 
-    public void updateStatusToBlocked() {
-        this.status = "BLOCKED";
-    }
+//    public void updateStatusToBlocked() {
+//        this.status = "BLOCKED";
+//    }
 }

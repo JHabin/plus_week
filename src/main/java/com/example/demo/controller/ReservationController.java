@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ReservationRequestDto;
+import com.example.demo.dto.ReservationResponseDto;
 import com.example.demo.service.ReservationService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/reservations")
@@ -16,9 +20,9 @@ public class ReservationController {
     @PostMapping
     public void createReservation(@RequestBody ReservationRequestDto reservationRequestDto) {
         reservationService.createReservation(reservationRequestDto.getItemId(),
-                                            reservationRequestDto.getUserId(),
-                                            reservationRequestDto.getStartAt(),
-                                            reservationRequestDto.getEndAt());
+                reservationRequestDto.getUserId(),
+                reservationRequestDto.getStartAt(),
+                reservationRequestDto.getEndAt());
     }
 
     @PatchMapping("/{id}/update-status")
@@ -31,9 +35,14 @@ public class ReservationController {
         reservationService.getReservations();
     }
 
+    // TODO: 7. 리팩토링
+    /**
+     * 2. 컨트롤러 응답 데이터 타입 void
+     *
+     */
     @GetMapping("/search")
-    public void searchAll(@RequestParam(required = false) Long userId,
-                          @RequestParam(required = false) Long itemId) {
-        reservationService.searchAndConvertReservations(userId, itemId);
+    public ResponseEntity<List<ReservationResponseDto>> searchAll(@RequestParam(required = false) Long userId,
+                                                                  @RequestParam(required = false) Long itemId) {
+        return ResponseEntity.ok(reservationService.searchAndConvertReservations(userId, itemId));
     }
 }

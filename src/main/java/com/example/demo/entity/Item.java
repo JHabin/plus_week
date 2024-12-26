@@ -2,11 +2,18 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.DynamicInsert;
 
 
 @Entity
 @Getter
 // TODO: 6. Dynamic Insert
+/**
+ * Dynamic Insert : INSERT 쿼리를 실행할 때, 내가 입력하는 필드(컬럼) 데이터만을 가지고 동적으로 SQL을 생성하는 방식
+ * 즉, 값이 없는 필드(컬럼)는 INSERT 쿼리에서 제외되어 들어감.
+ * 이 코드에서는 status 데이터가 안 들어가는데 이 status는 SQL 생성에서 제외됨.
+ */
+@DynamicInsert
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

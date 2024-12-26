@@ -17,4 +17,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u SET u.status = 'PENDING' WHERE u.status = 'APPROVED' AND u.id IN :userIds")
     void updatePendingStatus(@Param("userIds") List<Long> userIds);
+
+    // TODO: 7. 리팩토링 - (3) findById가 중복되어 사용 중
+    default User findUserById(Long id) {
+        return findById(id).orElseThrow(() -> new IllegalArgumentException("해당 ID에 맞는 값이 존재하지 않습니다."));
+    }
 }

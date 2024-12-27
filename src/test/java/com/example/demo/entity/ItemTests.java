@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import com.example.demo.config.QueryDslConfig;
+import com.example.demo.config.JPAConfiguration;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 // TODO: 8. 테스트코드 - Item Status Test
 @DataJpaTest    // JPA와 관련된 Repository, EntityManager만 로드하여 테스트를 실행
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)    // 내장된 DB가 아니라 실제 DB 사용하도록 설정
-@Import(QueryDslConfig.class)   //  QueryDSL 관련 설정 import
+@Import(JPAConfiguration.class)   //  QueryDSL 관련 설정 import
 public class ItemTests {
     @Autowired
     private ItemRepository itemRepository;

@@ -35,7 +35,7 @@ public class Item {
     @Column(nullable = false, columnDefinition = "varchar(20) default 'PENDING'")
     @Enumerated(value = EnumType.STRING)
     @NotNull
-    private String status;
+    private Status status;
 
     public Item(String name, String description, User manager, User owner) {
         this.name = name;
